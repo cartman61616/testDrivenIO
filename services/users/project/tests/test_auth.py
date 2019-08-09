@@ -1,8 +1,10 @@
 import json
 import unittest
 
+"""
 from project import db
 from project.api.models import User
+"""
 from project.tests.base import BaseTestCase
 from project.tests.utils import add_user
 
