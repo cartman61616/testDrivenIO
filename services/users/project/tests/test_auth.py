@@ -122,6 +122,40 @@ class TestAuthBluePrint(BaseTestCase):
             self.assertIn('Invalid payload.', data['message'])
             self.assertIn('fail', data['status'])
 
+    def test_registered_user_login(self):
+        with self.client:
+            add_user('test', 'test@test.com', 'test123')
+            response = self.client.post(
+                'auth/login',
+                data=json.dumps({
+                    'email': 'test@test.com',
+                    'password': 'test123'
+                }),
+                content_type='application/json'
+            )
+            data = json.loads(response.data.decode())
+            self.assertTrue(data['status'] == 'success')
+            self.assertTrue(data['message'] == 'Successfully logged in')
+            self.assertTrue(data['auth_token'])
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 200)
+
+    def test_not_registered_user_login(self):
+        with self.client:
+            response = self.client.post(
+                '/auth/login',
+                data=json.dumps({
+                    'email': 'test@test.com',
+                    'password': 'test123'
+                }),
+                content_type='application/json'
+            )
+            data = json.loads(response.data.decode())
+            self.assertTrue(data['status'] == 'fail')
+            self.assertTrue(data['message'] == 'User does not exist')
+            self.assertTrue(response.content_type == 'application/json')
+            self.assertEqual(response.status_code, 404)
+
 
 if __name__ == '__main__':
     unittest.main()
