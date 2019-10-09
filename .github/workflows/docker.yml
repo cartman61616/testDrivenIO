@@ -2,8 +2,6 @@ name: Docker Compose Actions Workflow
 on: push
 jobs:
   build:
-    env: 
-      REACT_APP_USERS_SERVICE_URL: http://127.0.0.1
     runs-on: ubuntu-latest
     steps: 
     - uses: actions/checkout@master
