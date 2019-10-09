@@ -8,7 +8,11 @@ jobs:
     steps: 
     - uses: actions/checkout@master
     - name: Build the stack
-      run: docker-compose up -d --build
+      run: docker-compose up -d
+    - name: Create DB
+      run: docker-compose exec users python recreate_db
+    - name: Seed DB
+      run: docker-compose exec users python manage.py seed_db
     - name: Run Python Tests
       run: docker-compose exec users python manage.py test
     - name: Run Python Lint Test
