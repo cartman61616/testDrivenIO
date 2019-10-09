@@ -1,9 +1,15 @@
 name: Docker Compose Actions Workflow
 on: push
 jobs:
-  test:
+  build:
+    env: 
+      REACT_APP_USERS_SERVICE_URL: http://127.0.0.1
     runs-on: ubuntu-latest
     steps: 
     - uses: actions/checkout@master
     - name: Build the stack
-      run: docker-compose up -d 
+      run: docker-compose up -d --build
+    - name: Run Python Tests
+      run: docker-compose exec users python manage.py test
+    - name: Run Python Lint Test
+      run: docker-compose exec users flake8 project
