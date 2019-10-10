@@ -17,6 +17,14 @@ exports[`NavBar renders a snapshot properly 1`] = `
       >
         Hello, World!
       </strong>
+      <span
+        className="nav-toggle navbar-burger"
+        onClick={[Function]}
+      >
+        <span />
+        <span />
+        <span />
+      </span>
     </div>
     <div
       className="navbar-menu"
