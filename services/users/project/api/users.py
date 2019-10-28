@@ -20,7 +20,8 @@ class UsersList(Resource):
             'message': 'Invalid payload.'
         }
         if not is_admin(resp):
-            response_object['message'] = 'You do not have permission to do that.'
+            response_object['message'] = 'You do not have permission to ' \
+                                         'do that.'
             return response_object, 401
         if not post_data:
             return response_object, 400
