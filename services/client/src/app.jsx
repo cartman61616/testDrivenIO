@@ -32,13 +32,17 @@ class App extends Component {
     };
     componentDidMount() {
         this.getUsers();
-        this.clearFormState();
+        if (window.localStorage.getItem('authToken')) {
+            this.setState({ isAuthenticated: true});
+        }
     };
+
     getUsers() {
         axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
-            .then((res) => { this.setState({ users: res.data.data.users}); })
-            .catch((err) => {console.log(err); })
+        .then((res) => { this.setState({ users: res.data.data.users }); })
+        .catch((err) => { console.log(err); });
     };
+
     addUser(event) {
         event.preventDefault();
         const data = {
@@ -85,17 +89,17 @@ class App extends Component {
             .catch((err) => { console.log(err); });
     };
 
-    logoutUser() {
-        window.localStorage.clear();
-        this.setState({ isAuthenticated: false });
-    };
-
     clearFormState() {
         this.setState({
             formData: { username: '', email: '', password: '' },
             username: '',
             email: ''
         });
+    };
+
+    logoutUser() {
+        window.localStorage.clear();
+        this.setState({ isAuthenticated: false });
     };
 
     render() {
