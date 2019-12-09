@@ -109,3 +109,5 @@ venv.bak/
 .git-together
 
 .DS_Store
+
+node_modules
