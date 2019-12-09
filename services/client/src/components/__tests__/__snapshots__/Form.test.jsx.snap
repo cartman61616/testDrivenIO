@@ -17,19 +17,7 @@ exports[`When not authenticated Login Form renders a snapshot properly 1`] = `
     >
       <input
         className="input is-medium"
-        name="email"
-        placeholder="Enter an email address"
-        required={true}
-        type="email"
-        value=""
-      />
-    </div>
-    <div
-      className="field"
-    >
-      <input
-        className="input is-medium"
-        name="password"
+        name="name"
         placeholder="Enter a password"
         required={true}
         type="password"
@@ -74,19 +62,7 @@ exports[`When not authenticated Register Form renders a snapshot properly 1`] = 
     >
       <input
         className="input is-medium"
-        name="email"
-        placeholder="Enter an email address"
-        required={true}
-        type="email"
-        value=""
-      />
-    </div>
-    <div
-      className="field"
-    >
-      <input
-        className="input is-medium"
-        name="password"
+        name="name"
         placeholder="Enter a password"
         required={true}
         type="password"
